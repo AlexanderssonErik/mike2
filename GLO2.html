@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>bilo</title>
+
+    <script src="earcut.js"></script>
+    <script src="https://cdn.babylonjs.com/babylon.max.js"></script>
+    <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+    <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
+    
+    <script src="global.js"></script> 
+    <script src="camera1.js"></script>
+  
+    <script src="base.js"></script>
+  
+
+    <style>
+
+html,body, can {
+		width:100%;
+		height:100%;
+		padding:0;
+		margin:0;
+		overflow:hidden;
+       
+	}
+	
+	
+	#renderCanvas {
+		width: 100%;
+		height: 100%;
+        touch-action: none;      
+	
+	}
+
+    </style>
+
+ </head>
+ <body>
+    <canvas id="renderCanvas" touch-action="none"></canvas>
+
+    <script>
+  
+        var canvas = document.getElementById("renderCanvas");
+        //var engine = new BABYLON.Engine(canvas, true);
+        var engine = new BABYLON.Engine(canvas, true, {alpha: true, antialias: false, audioEngine: false, autoEnableWebVR: false, depth: false,  deterministicLockstep: true, disableWebGL2Support: true, doNotHandleContextLost: true, failIfMajorPerformanceCaveat: true, limitDeviceRatio: 4, lockstepMaxSteps: 4, premultipliedAlpha: false, preserveDrawingBuffer: false ,stencil: false  });
+        //var engine = new BABYLON.Engine(canvas, true, {disableWebGL2Support: true });
+    
+        var biloScene = new BABYLON.Scene(engine);
+        biloScene.clearColor  = new BABYLON.Color3(0.7, 0.8, 0.9);
+        camera.init(biloScene);
+        base.init(biloScene);
+
+
+        /*	var greenMat = new BABYLON.StandardMaterial("greenMat", biloScene);
+	greenMat.diffuseColor = new BABYLON.Color3(0, 1, 0);
+    greenMat.alpha = 0.5;	
+    
+    var sphere2 = BABYLON.MeshBuilder.CreateSphere("sphere2", {}, biloScene);
+	sphere2.material = greenMat;	
+*/
+
+        engine.runRenderLoop(function () {
+
+
+            base.render();
+
+            biloScene.render();
+        });
+
+        window.addEventListener("resize", function () {
+            engine.resize();
+        });
+
+
+        
+    </script>
+ </body>
+</html>
